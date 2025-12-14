@@ -223,7 +223,5 @@ This project is licensed under the **MIT License**.
 * Groq LLMs
 * Google Speech Recognition
 
----
 
-### ⭐ If you like this project, don’t forget to star the repository on GitHub!
 

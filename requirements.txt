@@ -1,0 +1,8 @@
+langgraph
+langchain
+google-generativeai
+streamlit
+python-dotenv
+pandas
+pypdf
+pytest

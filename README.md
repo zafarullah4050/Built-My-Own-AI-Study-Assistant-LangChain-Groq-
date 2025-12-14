@@ -1,10 +1,11 @@
 # 🎙️ AI Voice & PDF Study Assistant (LangChain + Groq)
 
-An **AI-powered study assistant** built with **Streamlit, LangChain, and Groq LLMs**.
-It helps students study smarter by allowing them to:
+An **AI-powered study assistant** built with **Streamlit, LangChain, Groq LLMs, and Google Speech APIs**.
+
+This system helps students study smarter by allowing them to:
 
 * 📝 Type notes
-* 🎤 Speak notes (Speech-to-Text)
+* 🎤 Speak notes (Speech-to-Text using Google Speech Recognition)
 * 📄 Upload PDFs
 
 The AI can then:
@@ -13,7 +14,7 @@ The AI can then:
 * ❓ Generate quiz questions with answers
 * 📝 Create flashcards
 * ⏰ Build a personalized study schedule
-* 🔊 Read summaries aloud (Text-to-Speech)
+* 🔊 Read summaries aloud (Text-to-Speech using gTTS)
 
 This project is ideal for **students, self-learners, and exam preparation**.
 
@@ -21,27 +22,49 @@ This project is ideal for **students, self-learners, and exam preparation**.
 
 ## 🚀 Features
 
-* **Multiple Input Modes**
+### 🔹 Multiple Input Modes
 
-  * Text input (notes)
-  * Voice input using microphone
-  * PDF upload and text extraction
+* Text input (typed notes)
+* Voice input via microphone (Google Speech Recognition API)
+* PDF upload and text extraction
 
-* **AI-Powered Learning Tools**
+### 🔹 AI-Powered Learning Tools
 
-  * Notes summarization (easy bullet points)
-  * Quiz generation (with answers)
-  * Flashcard creation (Q&A format)
-  * Personalized study schedule based on available hours
+* Notes summarization (easy bullet points)
+* Quiz generation (with answers)
+* Flashcard creation (Q&A format)
+* Personalized study schedule based on available hours
 
-* **Voice Support**
+### 🔹 Voice Support
 
-  * Speech-to-Text using `SpeechRecognition`
-  * Text-to-Speech using `gTTS`
+* Speech-to-Text using **Google Speech Recognition API**
+* Text-to-Speech using **gTTS (Google Text-to-Speech)**
 
-* **Fast & Free LLMs**
+### 🔹 Fast AI Responses
 
-  * Uses **Groq API** with models like `llama-3.1-8b-instant`
+* Uses **Groq LLM API** for text-based AI tasks
+
+---
+
+## 🧠 System Architecture (Important Clarification)
+
+This project uses **multiple AI services**, each for a specific role:
+
+* **Groq LLM**
+  Used ONLY for **text generation tasks**:
+
+  * Summarization
+  * Quiz generation
+  * Flashcards
+  * Study schedules
+
+* **Google Speech Recognition API**
+  Used for converting **spoken voice into text** (Speech-to-Text)
+
+* **gTTS (Google Text-to-Speech)**
+  Used for converting **AI-generated text into audio**
+
+➡️ **Groq is NOT used for voice processing**.
 
 ---
 
@@ -49,9 +72,9 @@ This project is ideal for **students, self-learners, and exam preparation**.
 
 * **Frontend**: Streamlit
 * **LLM Framework**: LangChain
-* **LLM Provider**: Groq
-* **Speech-to-Text**: SpeechRecognition (Google API)
-* **Text-to-Speech**: gTTS
+* **LLM Provider**: Groq (Text generation only)
+* **Speech-to-Text**: Google Speech Recognition API
+* **Text-to-Speech**: gTTS (Google Text-to-Speech)
 * **PDF Processing**: PyPDF2
 * **Environment Management**: python-dotenv
 
@@ -80,7 +103,7 @@ venv\Scripts\activate      # Windows
 pip install streamlit langchain-groq SpeechRecognition gTTS pyaudio python-dotenv PyPDF2
 ```
 
-> ⚠️ **Note for Windows Users**
+> ⚠️ **Windows Users**
 > If `pyaudio` fails to install:
 
 ```bash
@@ -90,15 +113,19 @@ pipwin install pyaudio
 
 ---
 
-## 🔑 API Key Setup (Groq)
+## 🔑 API Key Setup
 
-1. Create a free account at **Groq**
+### Groq API Key (Required)
+
+1. Create a free account on **Groq**
 2. Generate an API key
 3. Create a `.env` file in the project root:
 
 ```env
 GROQ_API_KEY=your_groq_api_key_here
 ```
+
+> ⚠️ Google Speech Recognition works via the `SpeechRecognition` library and does NOT require a separate API key for basic usage.
 
 ---
 
@@ -108,7 +135,7 @@ GROQ_API_KEY=your_groq_api_key_here
 streamlit run app.py
 ```
 
-The app will open in your browser:
+The application will open in your browser:
 
 ```
 http://localhost:8501
@@ -130,7 +157,7 @@ http://localhost:8501
 
 4. Click **Generate Study Help**
 
-5. View:
+5. View generated results:
 
    * Summary
    * Quiz Questions
@@ -164,9 +191,9 @@ Other supported models:
 ## 📂 Project Structure
 
 ```
-├── app.py              # Main Streamlit app
-├── .env                # Environment variables (not pushed to GitHub)
-├── requirements.txt    # Dependencies
+├── app.py              # Main Streamlit application
+├── .env                # Environment variables (DO NOT push to GitHub)
+├── requirements.txt    # Project dependencies
 ├── README.md           # Project documentation
 ```
 
@@ -177,35 +204,35 @@ Other supported models:
 * Exam preparation
 * Quick revision from PDFs
 * Voice-based learning
-* Creating quizzes & flashcards automatically
+* Automatic quiz & flashcard generation
 * Daily study planning
 
 ---
 
 ## 🔒 Security Notes
 
-* Do **NOT** upload your `.env` file to GitHub
-* Add `.env` to `.gitignore`
+* ❌ Do NOT upload `.env` file to GitHub
+* ✅ Add `.env` to `.gitignore`
 
 ---
 
 ## 🌟 Future Improvements
 
-* Chat history memory per user
+* User login system
+* Chat history per user
 * Export summaries to PDF
 * Multilingual support
-* Login system
 * Mobile-friendly UI
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome!
+Contributions are welcome:
 
 1. Fork the repository
 2. Create a new branch
-3. Commit changes
+3. Commit your changes
 4. Open a Pull Request
 
 ---
@@ -221,7 +248,5 @@ This project is licensed under the **MIT License**.
 * Streamlit
 * LangChain
 * Groq LLMs
-* Google Speech Recognition
-
-
-
+* Google Speech Recognition API
+* Google Text-to-Speec
